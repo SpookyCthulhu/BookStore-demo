@@ -4,6 +4,8 @@ run 'nodemon index.js' in backend
 
 'npm start' in client
 
+open http://localhost:8800/ in your browser of choice
+
 and add any images you want to use for book cover pictures in client/public/images.
 
 Description:
