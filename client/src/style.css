@@ -5,7 +5,15 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	background-color: rgb(241, 236, 236);
+	background-color: rgb(41, 38, 49);
 }
+
+h1{
+	color: white;
+	text-align:left;
+}
+
 
 .books{
 	display: flex;
@@ -19,27 +27,67 @@
 	flex-direction: column;
 	gap: 10px;
 	align-items: center;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: rgba(246, 249, 255, 0.2) 0.25em 0.5em 10px 2px;
+	color: black;
 }
 
 img{
-	width: 200px;
-	height: 300px;
+	border-radius: 20px;
+	width: 100%;
+	height: auto;
 }
 
 .delete{
+	width: 50%;
+	height: 3em;
 	padding: 3px 6px;
-	background-color: white;
 	cursor: pointer;
-	color: red;
-	border: 1px solid red;
+	background-color: white;
+	border-radius: 0px 0px 0px 20px;
+}
+
+.delete:hover {
+	background-color: rgb(221, 52, 52);
+	color: white;
 }
 
 .update{
+	width: 50%;
+	height: 3em;
 	padding: 3px 6px;
-	background-color: white;
 	cursor: pointer;
-	color: blue;
-	border: 1px solid blue;
+	background-color:white;
+	border-radius: 0px 0px 20px 0px;
+}
+
+.update:hover {
+	background-color: navy;
+}
+
+.update:hover .link {
+	color: white;
+}
+
+.link {
+	text-decoration: none;
+	color: black;
+}
+
+.white {
+	color: white;
+	font-size: 4em;
+}
+
+.addBtn {
+	color: white;
+	height: 10vh;
+	border-radius: 50px;
+	border: 2px solid rgba(114, 121, 136, 0.2);
+	background-color: mediumseagreen;
+	box-shadow: rgba(114, 121, 136, 0.2) 0.5em 0.75em 10px;	box-shadow: rgba(114, 121, 136, 0.2) 0.5em 0.75em 10px;
+
 }
 
 .form{
@@ -63,3 +111,6 @@ input{
 	cursor: pointer;
 }
 
+.buttons {
+	width: 100%
+}

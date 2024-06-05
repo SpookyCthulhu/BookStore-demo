@@ -27,8 +27,8 @@ const Books = () => {
 		}
 	}
 	return (
-		<div>
-			<h1>chiStudios Book Shop</h1>
+		<div class='category'>
+			<h1>Adventure</h1>
 			<div className='books'>
 				{books.map((book) => (
 					<div className='book' key={book.id}>
@@ -38,15 +38,20 @@ const Books = () => {
 						{book.cover && <img src={`images/${book.cover}`} alt='x' />}
 						<h2>{book.title}</h2>
 						<p>{book.description}</p>
-						<span>{book.price}</span>
-						<button className='delete' onClick={()=>handleDelete(book.id)}>Delete</button>
-						<button className='update'><Link to={`/update/${book.id}`}>update</Link></button>
+						<button>Add to cart - ${book.price}</button>
+						{
+						//<div class='buttons'>
+						//	<button className='delete' onClick={()=>handleDelete(book.id)}>Delete</button>
+						//	<button className='update'><Link class='link' to={`/update/${book.id}`}>update</Link></button>
+						//</div>
+						}
 					</div>
-				))}
-			</div>
-			<button>
-			<Link to="/add">Add new book</Link>
+				))}	
+			<button class='addBtn'>
+			<Link class='link white' to="/add">+</Link>
 			</button>
+			</div>
+
 		</div>
 	);
 };
