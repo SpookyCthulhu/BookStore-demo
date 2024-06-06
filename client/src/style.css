@@ -1,116 +1,141 @@
-.App{
+.App {
 	height: 100vh;
 	padding: 0px 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	background-color: rgb(241, 236, 236);
 	background-color: rgb(41, 38, 49);
-}
-
-h1{
+  }
+  
+  h1 {
 	color: white;
-	text-align:left;
-}
-
-
-.books{
+	text-align: left;
+  }
+  
+  .books {
 	display: flex;
 	gap: 20px;
-	padding: 0px 0px 10px 0px;
-}
-
-.book{
+	padding-bottom: 10px;
+  }
+  
+  .book {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
 	align-items: center;
 	background-color: white;
 	border-radius: 20px;
 	box-shadow: rgba(246, 249, 255, 0.2) 0.25em 0.5em 10px 2px;
 	color: black;
-}
-
-img{
-	border-radius: 20px;
+	position: relative;
+  }
+  
+  .imgContainer {
+	position: relative;
 	width: 100%;
-	height: auto;
-}
-
-.delete{
-	width: 50%;
-	height: 3em;
-	padding: 3px 6px;
+  }
+  
+  img {
+	border-radius: 20px 20px 0 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px;
+  }
+  
+  .overlay {
+	position: absolute;
+	inset: 0 0 0 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-end;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	border-radius: 20px 20px 0 0;
+  }
+  
+  .imgContainer:hover .overlay {
+	opacity: 1;
+  }
+  
+  .overlay-button {
+	background-color: rgba(255, 255, 255, 0);
+	color: #fff;
+	border: none;
+	padding: 10px;
+	margin: 5px 0;
 	cursor: pointer;
-	background-color: white;
-	border-radius: 0px 0px 0px 20px;
-}
-
-.delete:hover {
-	background-color: rgb(221, 52, 52);
-	color: white;
-}
-
-.update{
-	width: 50%;
-	height: 3em;
-	padding: 3px 6px;
+	border-radius: 5px;
+	transition: background 0.3s ease;
+  }
+  
+  .overlay-button:hover {
+	background-color: #ff4747;
+  }
+  
+  .title {
+	margin-top: 20px;
+	margin-bottom: 0px;
+	font-size: 24px;
+  }
+  
+  .description {
+	margin-top: 20px;
+	color: #555;
+  }
+  
+  .add-to-cart {
+	background-color: gold;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+	margin-top: auto;
+  }
+  
+  .add-to-cart:hover {
+	background-color: rgb(253, 234, 124);
 	cursor: pointer;
-	background-color:white;
-	border-radius: 0px 0px 20px 0px;
-}
-
-.update:hover {
-	background-color: navy;
-}
-
-.update:hover .link {
-	color: white;
-}
-
-.link {
+  }
+  
+  .link {
 	text-decoration: none;
-	color: black;
-}
+  }
 
-.white {
+  .white {
 	color: white;
-	font-size: 4em;
-}
-
-.addBtn {
+  }
+  
+  .addBtn {
+	margin: auto auto;
+	font-size: 2em;
 	color: white;
 	height: 10vh;
-	border-radius: 50px;
+	border-radius: 20px;
 	border: 2px solid rgba(114, 121, 136, 0.2);
 	background-color: mediumseagreen;
-	box-shadow: rgba(114, 121, 136, 0.2) 0.5em 0.75em 10px;	box-shadow: rgba(114, 121, 136, 0.2) 0.5em 0.75em 10px;
-
-}
-
-.form{
+	box-shadow: rgba(114, 121, 136, 0.2) 0.25em 0.5em 10px;
+  }
+  
+  .form {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-}
-
-input{
+  }
+  
+  input {
 	width: 250px;
 	padding: 10px;
 	border: 1px solid gray;
-}
-
-.formButton{
+  }
+  
+  .formButton {
 	border: none;
 	padding: 10px;
 	background-color: navy;
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
-}
-
-.buttons {
-	width: 100%
-}
+  }
