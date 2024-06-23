@@ -15,3 +15,5 @@ This demo uses React for the frontend, mySQL for the backend, and node.js for ne
 The user can do other simple CRUD commands, such as delete and update their books.
 
 [Screencast from 06-06-2024 04:30:16 PM.webm](https://github.com/SpookyCthulhu/BookStore-demo/assets/161183828/5c0acc03-eb36-419d-bcb4-afffe3467483)
+
+![image](https://github.com/SpookyCthulhu/BookStore-demo/assets/161183828/7fe8f5f9-4490-46fa-abc1-9f50f8c7e147)
