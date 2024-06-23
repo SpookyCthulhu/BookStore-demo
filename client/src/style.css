@@ -1,25 +1,36 @@
 .App {
-	height: 100vh;
-	padding: 0px 100px;
+	height: 100%;
+	min-height: 100vh;
+	padding: 50px 0px 0px 100px;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: left;
 	justify-content: center;
 	text-align: center;
 	background-color: rgb(41, 38, 49);
+	margin-top: 80px;
   }
   
   h1 {
 	color: white;
 	text-align: left;
   }
+
+  .category {
+	align-items: center;
+	float: left;
+	margin-bottom: 50px;
+  }
   
   .books {
 	display: flex;
+	flex-direction: row;
 	gap: 20px;
 	padding-bottom: 10px;
   }
   
   .book {
+	max-width: 20vw;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -109,7 +120,7 @@
   }
   
   .addBtn {
-	margin: auto auto;
+	margin: auto 0px;
 	font-size: 2em;
 	color: white;
 	height: 10vh;
@@ -139,3 +150,51 @@
 	font-weight: bold;
 	cursor: pointer;
   }
+
+  .Navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	position: fixed;
+	z-index: 100;
+	top: 0px;
+	left: 0px;
+	background-color: #9d85dd;
+	width: 100vw;
+	height: auto;
+	padding: 10px 20px 10px 20px;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+	box-shadow: black 0px 2px 10px 2px;
+  }
+  
+  .Navlogo {
+	margin-left: 60px;
+	align-self: center;
+	width: auto;
+	height: calc(5vh + 1vw);
+	max-height: 15vh;
+	box-shadow: none;
+  }
+
+  .Navbuttons {
+	margin-right: 60px;
+	display: flex;
+	align-content: center;
+	gap: calc(4px + 2vw);
+	/* WTF IS GOING ON HERE?? No + but necessary for centering?? */
+	height: calc(10px 5vh);
+  }
+  
+  .navCheckout {
+	align-self: center;
+	height: calc(5px + 4vw);
+	max-height: 5vh;
+	border: none;
+	border-radius: 5px;
+	color: black;
+	background-color: white;
+	padding: calc(2px + 0.5vw);
+	text-align: center;
+  }
+  
