@@ -24,7 +24,7 @@ const Books = () => {
 		<Navbar />
 		{categories.map((category) => {
 			return(
-			<Category className='category' key={Math.random().toString(36).substr(2, 9)} name={category.category} />);
+			<Category key={Math.random().toString(36).substr(2, 9)} name={category.category} />);
 		}
 	)};
 	</>

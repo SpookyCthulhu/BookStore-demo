@@ -1,14 +1,13 @@
 .App {
 	height: 100%;
 	min-height: 100vh;
-	padding: 50px 0px 0px 100px;
+	padding: calc(50px + 3vw) 0px 0px calc(10px + 5vw);
 	display: flex;
 	flex-direction: column;
 	align-items: left;
 	justify-content: center;
 	text-align: center;
 	background-color: rgb(41, 38, 49);
-	margin-top: 80px;
   }
   
   h1 {
@@ -16,21 +15,43 @@
 	text-align: left;
   }
 
+  .titleBar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+  }
+
+  .chevronContainer {
+	display: flex;
+	gap: 20px;
+	margin-right: calc(10px + 5vw);
+  }
+
+  .chevron {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	color: white;
+	font-size: 25px;
+  }
+
   .category {
 	align-items: center;
 	float: left;
-	margin-bottom: 50px;
+	margin-bottom: calc(3vw);
   }
   
   .books {
-	display: flex;
-	flex-direction: row;
+	margin-right: calc(10px + 5vw);
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 20px;
 	padding-bottom: 10px;
+	overflow-x: auto;
+	overflow: visible;
   }
   
   .book {
-	max-width: 20vw;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -66,6 +87,8 @@
 	opacity: 0;
 	transition: opacity 0.3s ease;
 	border-radius: 20px 20px 0 0;
+	padding-top: 10px;
+	gap: 10px;
   }
   
   .imgContainer:hover .overlay {
@@ -77,7 +100,7 @@
 	color: #fff;
 	border: none;
 	padding: 10px;
-	margin: 5px 0;
+	margin: 0px 10px;
 	cursor: pointer;
 	border-radius: 5px;
 	transition: background 0.3s ease;
@@ -120,10 +143,12 @@
   }
   
   .addBtn {
+	width: 100%;
+	max-width: 20vw;
 	margin: auto 0px;
 	font-size: 2em;
 	color: white;
-	height: 10vh;
+	height: 60vh;
 	border-radius: 20px;
 	border: 2px solid rgba(114, 121, 136, 0.2);
 	background-color: mediumseagreen;
@@ -155,46 +180,45 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 	position: fixed;
 	z-index: 100;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: #9d85dd;
-	width: 100vw;
+	width: 100%;
 	height: auto;
-	padding: 10px 20px 10px 20px;
+	padding: 10px calc(10px + 5vw);
 	box-sizing: border-box;
-	flex-wrap: wrap;
 	box-shadow: black 0px 2px 10px 2px;
   }
   
   .Navlogo {
-	margin-left: 60px;
-	align-self: center;
 	width: auto;
 	height: calc(5vh + 1vw);
 	max-height: 15vh;
 	box-shadow: none;
-  }
-
-  .Navbuttons {
-	margin-right: 60px;
-	display: flex;
-	align-content: center;
-	gap: calc(4px + 2vw);
-	/* WTF IS GOING ON HERE?? No + but necessary for centering?? */
-	height: calc(10px 5vh);
+	padding: calc(5px + 0.25vw);
+	box-sizing: border-box;
   }
   
-  .navCheckout {
-	align-self: center;
+  .Navbuttons {
+	display: flex;
+	align-items: center;
+	gap: calc(4px + 2vw);
+  }
+  
+  .navBtn {
 	height: calc(5px + 4vw);
 	max-height: 5vh;
 	border: none;
 	border-radius: 5px;
-	color: black;
-	background-color: white;
-	padding: calc(2px + 0.5vw);
+	color: white;
+	background-color: rgba(0, 0, 0, 0);
+	font-size: 25px;
 	text-align: center;
   }
   
+  .profileBtn {
+	border-radius: 30px;
+  }
