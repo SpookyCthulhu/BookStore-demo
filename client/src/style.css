@@ -104,6 +104,7 @@
 	cursor: pointer;
 	border-radius: 5px;
 	transition: background 0.3s ease;
+	grid-area: header-right
   }
   
   .overlay-button:hover {
@@ -142,38 +143,81 @@
 	color: white;
   }
   
-  .addBtn {
-	width: 100%;
-	max-width: 20vw;
-	margin: auto 0px;
-	font-size: 2em;
-	color: white;
-	height: 60vh;
-	border-radius: 20px;
-	border: 2px solid rgba(114, 121, 136, 0.2);
-	background-color: mediumseagreen;
-	box-shadow: rgba(114, 121, 136, 0.2) 0.25em 0.5em 10px;
-  }
-  
   .form {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
   }
-  
+
   input {
-	width: 250px;
+	width: 90%;
 	padding: 10px;
 	border: 1px solid gray;
-  }
-  
-  .formButton {
+	border-radius: 10px;
 	border: none;
+	text-align: center;
+  }
+
+  .descInput {
+	color: #555;
+	margin-top: 5px;
+	border: none;
+	width: 90%;
+	margin-bottom: 20px;
+	text-align: center;
+	resize: none;
+  }
+
+  .formButton {
+	border-bottom: black solid 1px;
+	border-radius: 10px;
 	padding: 10px;
-	background-color: navy;
+	margin-top: 5px;
+	background-color: mediumseagreen;
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
+	margin: auto 0px 20px 0px;
+  }
+
+  .formButton:hover {
+	background-color: rgb(84, 218, 144);
+  }
+
+  .uploadImg {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	font-size: 70px;
+	color: white;
+  }
+
+  .uploadContainer {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	justify-self: center;
+	align-items: center;
+	grid-area: content;
+  }
+
+  .formOverlayContainer {
+	padding: 0px;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	grid-template-rows: 40px 1fr 40px;
+	grid-template-columns: 1fr 40px;
+	gap: 0px;
+	grid-template-areas:
+		'header-left header-right'
+		'content content'
+		'footer footer';
+  }
+
+  #randomizeBtn {
+	width: 30px;
+	margin: 10px 10px 0px 0px;
+	padding: 10px 0px 10px 0px;
+	grid-area: header-right;
   }
 
   .Navbar {
