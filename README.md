@@ -17,4 +17,4 @@ The user can do other simple CRUD commands, such as delete and update their book
 
 [Screencast from 06-05-2024 10:18:53 PM.webm](https://github.com/SpookyCthulhu/BookStore-demo/assets/161183828/ec57d3dc-0b0d-4f94-a1ea-f8826bd064a9)
 
-![Bookstore heirarchy](https://github.com/SpookyCthulhu/BookStore-demo/assets/161183828/f4c42f82-b5f8-45aa-92d6-706c35cb1abb)
+![Bookstore heirarchy(2)](https://github.com/SpookyCthulhu/BookStore-demo/assets/161183828/f7a3f512-ebc8-4a1c-8a45-62317e459c2a)
