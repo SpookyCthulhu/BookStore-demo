@@ -8,10 +8,11 @@ const Update = () => {
 		description: '',
 		price: null,
 		cover: '',
+		category: '',
 	});
 	
-	const navigate = useNavigate()
-	const location = useLocation()
+	const navigate = useNavigate();
+	const location = useLocation();
 	
 	const bookId = location.pathname.split('/')[2];
 	
@@ -27,7 +28,7 @@ const Update = () => {
 		} catch(err) {
 			console.log(err)
 		}
-	}
+	};
 	
 	console.log(book)
 	return (
@@ -37,9 +38,10 @@ const Update = () => {
 			<input type='text' placeholder='description' onChange={handleChange} name='description'/>
 			<input type='number' placeholder='price' onChange={handleChange} name='price'/>
 			<input type='text' placeholder='cover' onChange={handleChange} name='cover'/>
+			<input type='text' placeholder='category' onChange={handleChange} name='category'/>
 			<button className='formButton' onClick={handleClick}>Update</button>
 		</div>
-	)
-}
+	);
+};
 
-export default Update
+export default Update;

@@ -4,9 +4,8 @@ import {
 	Route,
 } from 'react-router-dom';
 import Books from './pages/Books';
-import Add from './pages/Add';
-import Update from './pages/Update';
-import './style.css'
+import UploadForm from './pages/UploadForm';
+import './style.css';
 
 function App() {
   return (
@@ -14,8 +13,9 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path='/' element={<Books/>}/>
-					<Route path='/add' element={<Add/>}/>
-					<Route path='/update/:id' element={<Update/>}/>
+					<Route path='/profile'/>
+					<Route path='/cart'/>
+					<Route path='/testing' element={<UploadForm />}/>
 				</Routes>
 			</BrowserRouter>
 		</div>
