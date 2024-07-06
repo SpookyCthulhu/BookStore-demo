@@ -2,7 +2,7 @@
 Index:
 	$ Universal
 	$ Navbar
-	$ Category
+	$ Carousel
 	$ Book
 	$ Book Overlay 
 	$ Add Book Form
@@ -34,6 +34,7 @@ Index:
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	display: block;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px;
   }
 
@@ -95,9 +96,9 @@ Index:
 	border-radius: 30px;
   }
 
-  /* $ Category*/
+  /* $ Carousel*/
 
-  .category {
+  .carousel {
 	align-items: center;
 	float: left;
 	margin-bottom: calc(3vw);
@@ -123,8 +124,7 @@ Index:
 	font-size: 25px;
   }
 
-  /* part of category, contains the books */
-  .books {
+  .carouselContent {
 	margin-right: calc(10px + 5vw);
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -136,7 +136,7 @@ Index:
 
   /* $ Book */
   
-  .book {
+  .card {
 	flex: 1;
 	display: flex;
 	flex-direction: column;

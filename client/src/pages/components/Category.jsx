@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Book from './Book';
-import AddForm from './AddForm';
+import Card from './layout/Card';
+import Form from './layout/Form';
+import Carousel from './layout/Carousel';
 
 const Category = (props) => {
     const [books, setBooks] = useState([]);
@@ -31,21 +32,33 @@ const Category = (props) => {
     };
 
     return(
-        <div className="category">
-          <div className='titleBar'>
-            <h1>{props.name}</h1>
-            <div className='chevronContainer'>
-              <button className='chevron'><i class="fa-solid fa-circle-chevron-left"></i></button>
-              <button className='chevron'><i class="fa-solid fa-circle-chevron-right"></i></button>
-            </div>
-          </div>
-          <div className="books">
+      <Carousel name={props.name}>
+        {
+          // Changed books to 'carousel content'
+        }
+          <div className="carouselContent">
               {books.map((book) => (
                 <Book title={book.title} description={book.description} price={book.price} cover={book.cover} id={book.id} key={book.id} handleDelete={handleDelete}/>
               ))}
-              <AddForm />
+              <Card>
+                {
+                // Form is an extensible way to create new forms by creating 'fields' which request certain data from the user.
+                // If supplied an apiEndpoint, will automatically post to given address with all the field names as values.
+                }
+                <Form
+                  fields = {[
+                            { name: 'cover', type: 'image'},
+                            { name: 'title', type: 'text', className: 'title', placeholder: 'Title' },
+                            { name: 'price', type: 'number', className: 'priceInput', placeholder: 'Price' },
+                            { name: 'description', type: 'textarea', className: 'descInput', placeholder: 'Description' },
+                          ]}
+                  submitButtonText="Add Book"
+                  apiEndpoint={`http://localhost:8800/books/`}
+                  category={props.name}>
+                </Form>
+              </Card>
           </div>
-        </div>
+      </Carousel>
     );
 };
 

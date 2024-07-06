@@ -1,6 +1,8 @@
+import Card from './layout/Card';
+
 const Book = (props) => {
     return (
-        <div className="book" key={props.id}>
+        <Card key={props.id}>
             <div className="imgContainer">
                 {props.cover ? <img src={`http://localhost:8800/books/images/${props.id}`} alt={props.title}/> : <img src={'images/default.png'} />}
                 <div className="overlay">
@@ -20,7 +22,7 @@ const Book = (props) => {
             <button className="add-to-cart">
                 <i className="fas fa-shopping-cart"></i> Add to cart - ${props.price}
             </button>
-        </div>
+        </Card>
     );
 }
 
