@@ -9,8 +9,8 @@ import ImgUpload from './ImgUpload';
 // the parent, and is placed in the useState by default.
 
 const Form = ({ fields, submitButtonText, apiEndpoint, category }) => {
-  console.log(category);
-  const [formData, setFormData] = useState({category: category});
+
+  const [formData, setFormData] = useState({category: category ? category : null});
 
   const handleChange = (name, value) => {
     setFormData(prevData => ({

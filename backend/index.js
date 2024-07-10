@@ -109,8 +109,8 @@ app.put('/books/:id', (req, res) => {
 	});
 });
 
-app.get('/books/category', (req, res) => {
-	const q = 'SELECT DISTINCT category FROM books';
+app.get('/category', (req, res) => {
+	const q = 'SELECT * FROM category';
 
 	db.query(q, (err, data) => {
 		if (err) return res.json(err);
@@ -118,9 +118,9 @@ app.get('/books/category', (req, res) => {
 	});
 });
 
-app.get('/books/category/:category', (req, res) => {
+app.get('/category/:category', (req, res) => {
 	const bookCategory = req.params.category;
-	const q = 'SELECT * FROM books WHERE category = ?';
+	const q = 'SELECT * FROM books WHERE categoryid = ?';
 
 	db.query(q, [bookCategory], (err, data) => {
 		if (err) return res.json(err);
@@ -128,6 +128,41 @@ app.get('/books/category/:category', (req, res) => {
 	});
 });
 
+// Uses await promise to allow two requests in one HTTP request.
+app.post('/category', upload.single('cover'), async (req, res) => {
+	const category = req.body.category;
+	const q1 = 'INSERT INTO category (`name`) VALUES (?)';
+	const q2 = 'INSERT INTO books (`title`, `description`, `price`, `cover`, `categoryid`) VALUES (?)';
+	const imageName = req.file ? req.file.filename : null;
+
+	try {
+		// Create a promise for the first query
+		const categoryResult = await new Promise((resolve, reject) => {
+		  db.query(q1, [category], (err, data) => {
+			if (err) reject(err);
+			else resolve(data);
+		  });
+		});
+
+		// Get the ID of the newly inserted category
+        const newCategoryId = categoryResult.insertId;
+		// add the ID to values
+		const values = [req.body.title, req.body.description, req.body.price, imageName, newCategoryId];
+	
+		// Create a promise for the second query
+		const bookResult = await new Promise((resolve, reject) => {
+		  db.query(q2, [values], (err, data) => {
+			if (err) reject(err);
+			else resolve(data);
+		  });
+		});
+	
+		res.json('Category and book have been created successfully.');
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+});
+	
 app.listen(8800, () => {
 	console.log('Connected to backend!');
 })

@@ -12,7 +12,7 @@ const Category = (props) => {
     useEffect(() => {
       const fetchAllBooks = async () => {
         try {
-          const res = await axios.get('http://localhost:8800/books/category/'+props.name);
+          const res = await axios.get('http://localhost:8800/category/'+props.id);
           setBooks(res.data);
         } catch (err) {
           console.log(err);
@@ -49,12 +49,12 @@ const Category = (props) => {
                   fields = {[
                             { name: 'cover', type: 'image'},
                             { name: 'title', type: 'text', className: 'title', placeholder: 'Title' },
-                            { name: 'price', type: 'number', className: 'priceInput', placeholder: 'Price' },
+                            { name: 'price', type: 'text', className: 'priceInput', placeholder: 'Price' },
                             { name: 'description', type: 'textarea', className: 'descInput', placeholder: 'Description' },
                           ]}
                   submitButtonText="Add Book"
                   apiEndpoint={`http://localhost:8800/books/`}
-                  category={props.name}>
+                  category={props.id}>
                 </Form>
               </Card>
           </div>
