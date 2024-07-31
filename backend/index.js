@@ -77,7 +77,9 @@ app.get('/books/images/:id', (req, res) => {
   });
 
 app.post('/books', upload.single('cover'), async (req, res) => {
-	const q = 'INSERT INTO books (`title`, `description`, `price`, `cover`, `category`) VALUES (?)';
+	console.log('Received file:', req.file);
+	console.log('Received body:', req.body);
+	const q = 'INSERT INTO books (`title`, `description`, `price`, `cover`, `categoryid`) VALUES (?)';
 	const imageName = req.file ? req.file.filename : null;
 	const values = [req.body.title, req.body.description, req.body.price, imageName, req.body.category];
 
@@ -99,7 +101,7 @@ app.delete('/books/:id', (req, res) => {
 
 app.put('/books/:id', (req, res) => {
 	const bookId = req.params.id;
-	const q = 'UPDATE books SET `title` = ?, `description` = ?, `price` = ?, `cover` = ?, `category` = ? WHERE id = ?';
+	const q = 'UPDATE books SET `title` = ?, `description` = ?, `price` = ?, `cover` = ?, `categoryid` = ? WHERE id = ?';
 
 	const values = [req.body.title, req.body.description, req.body.price, req.body.cover, req.body.category];
 
@@ -128,39 +130,14 @@ app.get('/category/:category', (req, res) => {
 	});
 });
 
-// Uses await promise to allow two requests in one HTTP request.
-app.post('/category', upload.single('cover'), async (req, res) => {
+app.post('/category', async (req, res) => {
 	const category = req.body.category;
-	const q1 = 'INSERT INTO category (`name`) VALUES (?)';
-	const q2 = 'INSERT INTO books (`title`, `description`, `price`, `cover`, `categoryid`) VALUES (?)';
-	const imageName = req.file ? req.file.filename : null;
+	const q = 'INSERT INTO category (`name`) VALUES (?)';
 
-	try {
-		// Create a promise for the first query
-		const categoryResult = await new Promise((resolve, reject) => {
-		  db.query(q1, [category], (err, data) => {
-			if (err) reject(err);
-			else resolve(data);
-		  });
-		});
-
-		// Get the ID of the newly inserted category
-        const newCategoryId = categoryResult.insertId;
-		// add the ID to values
-		const values = [req.body.title, req.body.description, req.body.price, imageName, newCategoryId];
-	
-		// Create a promise for the second query
-		const bookResult = await new Promise((resolve, reject) => {
-		  db.query(q2, [values], (err, data) => {
-			if (err) reject(err);
-			else resolve(data);
-		  });
-		});
-	
-		res.json('Category and book have been created successfully.');
-	} catch (error) {
-		res.status(500).json({ error: error.message });
-	}
+		db.query(q, category, (err, data) => {
+			if (err) return res.json(err);
+			return res.json(data.insertId);
+		})
 });
 	
 app.listen(8800, () => {

@@ -23,16 +23,44 @@ const Books = () => {
 		fetchAllCategories();
 	  }, []);
 
+	const handleCategoryCreation = async (formDataToSend) => {
+		if (formDataToSend.has('category')) {
+			let category = formDataToSend.get('category');
+			formDataToSend.delete('category');
+			try {
+				// The id number of the category is returned to response and then appended to formDataToSend.
+				const response = await axios.post('http://localhost:8800/category/', {category: category});
+				formDataToSend.append('category', response.data);
+				console.log("Successfully added category:", response.data);
+			} catch (error) {
+				console.log("Error uploading category:", error);
+			}
+			try {
+				const response = await axios.post('http://localhost:8800/books/', formDataToSend, {
+					headers: {
+			  		'Content-Type': 'multipart/form-data'
+					}
+				});
+				console.log('Successfully added book:', response.data);
+			} catch (error) {
+				console.log("Error uploading book:", error)
+			}
+		}
+	}
+
   return (
 	<>
 		<Navbar />
 		{categories.map((category) => {
+			console.log("category creation:");
+			console.log(category.id);
+			console.log(category.name);
 			return(
 			<Category key={category.id} id={category.id} name={category.name} />);
 		})};
 		<Dropdown title="Add Category" classes="dropdown">
 			<Card>
-				<Form 
+				<Form
 			        fields = {[
 						{ name: 'cover', type: 'image'},
 						{ name: 'category', type: 'text', className: 'title', placeholder: 'category'},
@@ -40,9 +68,9 @@ const Books = () => {
 						{ name: 'price', type: 'text', className: 'priceInput', placeholder: 'Price' },
 						{ name: 'description', type: 'textarea', className: 'descInput', placeholder: 'Description' },
 					]}
-					submitButtonText="Add Book"
-					apiEndpoint={`http://localhost:8800/category/`}
-				/>
+					submitButtonText="Add Category"
+					handleAPI={handleCategoryCreation}>
+				</Form>
 			</Card>
 		</Dropdown>
 	</>

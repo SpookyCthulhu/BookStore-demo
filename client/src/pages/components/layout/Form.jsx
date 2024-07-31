@@ -1,46 +1,57 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import ImgUpload from './ImgUpload';
 
 
 // Form needs a value for the necessary fields that need to be filled, the text
-// for the submit button, and a relevant apiEndpoint to post to.
-// category is an addition necessary piece of data in this case which comes from
-// the parent, and is placed in the useState by default.
+// for the submit button, and a function for returning the FormData.
+const Form = ({ fields, submitButtonText, handleAPI }) => {
 
-const Form = ({ fields, submitButtonText, apiEndpoint, category }) => {
+  const [formData, setFormData] = useState([]);
+  const [backup, setBackup] = useState([]);
 
-  const [formData, setFormData] = useState({category: category ? category : null});
+  useEffect(() => {
+    console.log('vvvv')
+		console.log(formData);
+    console.log('^^^^')
+    if (formData['cover']) {
+      setBackup({backup: formData['cover']});
+    };
+    console.log('Backup:')
+    console.log(backup['backup']);
+	}, [formData]);
 
+  // Handles live changes to data
   const handleChange = (name, value) => {
+    console.log('handleChange name+value:');
+    console.log(name);
+    console.log(value);
     setFormData(prevData => ({
       ...prevData,
       [name]: value
     }));
+    console.log('handleChange:');
+    console.log(formData['cover']);
   };
 
-  const handleSubmit = async (e) => {
+  // Formats data into a FormData object and then sends it to be handled by the handleAPI function.
+  const handleSubmit = (e) => {
+
+    console.log('handleSubmit cover:')
+    console.log(formData['cover']);
+    console.log(backup);
     e.preventDefault();
     const formDataToSend = new FormData();
     
     Object.keys(formData).forEach(key => {
       formDataToSend.append(key, formData[key]);
     });
+    console.log('formDataToSend:');
+    console.log(formDataToSend);
 
-    try {
-      const response = await axios.post(apiEndpoint, formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log('Upload successful:', response.data);
-      setFormData({}); // Reset form after successful submission
-    } catch (error) {
-      console.error('Error uploading data:', error);
-    }
+    handleAPI(formDataToSend);
   };
 
-  // Uses field data to define some 
+  // Uses field data type to specify the html component and associated className using a switch case.
   return (
     <form onSubmit={handleSubmit}>
       {fields.map(field => {
@@ -71,7 +82,10 @@ const Form = ({ fields, submitButtonText, apiEndpoint, category }) => {
             return (
               <ImgUpload
                 key={field.name}
-                upload={(file) => handleChange(field.name, file)}
+                upload={(file) => {
+                                    console.log('Selected file:', file);
+                                    handleChange(field.name, file);
+                                  }}
               />
             );
           default:

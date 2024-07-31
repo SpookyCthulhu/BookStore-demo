@@ -14,8 +14,8 @@ const Category = (props) => {
         try {
           const res = await axios.get('http://localhost:8800/category/'+props.id);
           setBooks(res.data);
-        } catch (err) {
-          console.log(err);
+        } catch (error) {
+          console.log(error);
         }
       };
       fetchAllBooks();
@@ -26,10 +26,24 @@ const Category = (props) => {
         await axios.delete('http://localhost:8800/books/' + id);
         // REMOVE THIS before merging with main
         window.location.reload();
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
+
+    const handlePost = async (formDataToSend) => {
+      console.log(formDataToSend.get('cover'));
+      formDataToSend.append('category', props.id);
+      try {
+        const response = await axios.post('http://localhost:8800/books/', formDataToSend, {
+					headers: {
+			  		'Content-Type': 'multipart/form-data'
+					}
+				});
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     return(
       <Carousel name={props.name}>
@@ -53,8 +67,7 @@ const Category = (props) => {
                             { name: 'description', type: 'textarea', className: 'descInput', placeholder: 'Description' },
                           ]}
                   submitButtonText="Add Book"
-                  apiEndpoint={`http://localhost:8800/books/`}
-                  category={props.id}>
+                  handleAPI={handlePost}>
                 </Form>
               </Card>
           </div>
